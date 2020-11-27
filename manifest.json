@@ -25,10 +25,21 @@
       {
         "src": "asset/img/icons/icon192.png",
         "type": "image/png",
-        "sizes": "192x192"
+        "sizes": "192x192",
+        "purpose": "any maskable"
+      }, 
+      {
+        "src": "asset/img/icons/playstore.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }, 
+      {
+        "src": "asset/img/icons/appstore.png",
+        "type": "image/png",
+        "sizes": "1024x1024"
       }
     ],
-    "start_url": "/index.html",
+    "start_url": "/",
     "background_color": "#EE6F72",
     "display": "standalone",
     "theme_color": "#EE6F72"
