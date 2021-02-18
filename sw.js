@@ -1,6 +1,19 @@
+const staticCache = 'static-cache'
+const assets = [
+    '/',
+    '/index.html',
+    '/asset/js/app.js',
+    '/asset/materialize/js/materialize.min.js',
+    '/asset/materialize/css/materialize.css',
+    'https://fonts.googleapis.com/icon?family=Material+Icons'
+]
 // install
 self.addEventListener('install', e => {
-    console.log('sw di install')
+    e.waitUntil(
+        caches.open(staticCache).then(cache => {
+            cache.addAll(assets)
+        })
+    )
 })
 
 // aktivasi
