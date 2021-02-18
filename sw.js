@@ -1,10 +1,12 @@
 const staticCache = 'static-cache'
+const dynamicCache = 'dynamic-cache'
 const assets = [
     '/',
     '/index.html',
     '/asset/js/app.js',
+    '/asset/js/ui.js',
     '/asset/materialize/js/materialize.min.js',
-    '/asset/materialize/css/materialize.css',
+    '/asset/materialize/css/materialize.min.css',
     'https://fonts.googleapis.com/icon?family=Material+Icons'
 ]
 // install
@@ -23,5 +25,15 @@ self.addEventListener('activate', e => {
 
 // fetch data
 self.addEventListener('fetch' , e => {
-    console.log('event fetch', e)
+    e.respondWith(
+        caches.match(e.request).then(staticRes => {
+            return staticRes || fetch(e.request).then(dynamicRes => {
+                return caches.open(dynamicCache).then(cache => {
+                    cache.put(e.request.url, dynamicRes.clone())
+                        return dynamicRes
+                })
+            })
+        })
+    )
 })
+
