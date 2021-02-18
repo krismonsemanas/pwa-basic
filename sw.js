@@ -35,17 +35,17 @@ self.addEventListener('activate', e => {
 })
 
 // fetch data
-self.addEventListener('fetch' , e => {
-    e.respondWith(
-        caches.match(e.request).then(staticRes => {
-            return staticRes || fetch(e.request).then(dynamicRes => {
-                return caches.open(dynamicCache).then(cache => {
-                    cache.put(e.request.url, dynamicRes.clone())
-                    limitNumCahce(dynamicCache, 2)
-                    return dynamicRes
-                })
-            })
-        }).catch(() => caches.match('/pages/fallback.html'))
-    )
-})
+// self.addEventListener('fetch' , e => {
+//     e.respondWith(
+//         caches.match(e.request).then(staticRes => {
+//             return staticRes || fetch(e.request).then(dynamicRes => {
+//                 return caches.open(dynamicCache).then(cache => {
+//                     cache.put(e.request.url, dynamicRes.clone())
+//                     limitNumCahce(dynamicCache, 2)
+//                     return dynamicRes
+//                 })
+//             })
+//         }).catch(() => caches.match('/pages/fallback.html'))
+//     )
+// })
 

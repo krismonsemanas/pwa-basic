@@ -38,16 +38,16 @@
         </ul>
     </div>
     <!-- Modal Structure -->
-    <div id="modal_tambah" class="modal">
+    <div id="addContact" class="modal add-contact">
         <div class="modal-content">
             <h4>Tambah Kontak Baru</h4>
             <form action="">
                 <div class="input-field">
-                    <input placeholder="Nama" id="name" type="text" class="validate">
+                    <input placeholder="Nama" name="name" id="name" type="text" class="validate">
                     <label for="name">Nama</label>
                   </div>
                 <div class="input-field">
-                    <input id="nomor" type="number" class="validate">
+                    <input id="nomor" name="number" type="number" class="validate">
                     <label for="nomor">Nomor</label>
                 </div>
                 <button class="btn">Add</button>
@@ -55,14 +55,52 @@
             </form>
         </div>
     </div>
+    <div id="editModal" class="modal edit-contact">
+        <div class="modal-content">
+            <h4>Edit Kontak</h4>
+            <form action="">
+                <div class="input-field">
+                    <input placeholder="Nama" name="name" id="name" type="text" class="validate">
+                    <label for="name">Nama</label>
+                  </div>
+                <div class="input-field">
+                    <input id="nomor" name="number" type="number" class="validate">
+                    <label for="nomor">Nomor</label>
+                </div>
+                <button class="btn">Update</button>
+                <p class="error"></p>
+            </form>
+        </div>
+    </div>
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red">
+        <a class="btn-floating btn-large red modal-trigger" href="#addContact">
             <i class="large material-icons">mode_edit</i>
         </a>
     </div>
-        
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDkxxjRnAK7B9rFZoVaA_-O3yBQsJ_7lGg",
+            authDomain: "pwa-basic-51f4a.firebaseapp.com",
+            projectId: "pwa-basic-51f4a",
+            storageBucket: "pwa-basic-51f4a.appspot.com",
+            messagingSenderId: "966691046912",
+            appId: "1:966691046912:web:ec56acc98d01f45e443ae5"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore()
+    </script>
     <script src="/asset/materialize/js/materialize.min.js"></script>
     <script src="/asset/js/app.js"></script>
+    <script src="/asset/js/db.js"></script>
     <script src="/asset/js/ui.js"></script>
 </body>
 </html>
