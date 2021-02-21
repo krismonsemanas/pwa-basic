@@ -1,3 +1,11 @@
+db.enablePersistence().catch(err => {
+    if (err.code == 'failed-precondition') {
+        console.log("Multiple tab opened")
+    } else if (err.code == 'unimplemented') {
+        console.log("browser not supported")
+    }
+})
+
 const contactForm = document.querySelector('.add-contact form')
 const modalContactForm = document.querySelector('#addContact')
 
@@ -25,7 +33,15 @@ db.collection('contacts').onSnapshot(snapshot => {
             renderContacts(change.doc.data(), change.doc.id)
         }
         if(change.type === 'removed') {
-            console.log(`${change.doc.id} is removed`)
+            removeContact(change.doc.id)
         }
     })
+})
+
+const contatcsContainer = document.querySelector('.contacts')
+contatcsContainer.addEventListener('click', e => {
+    if (e.target.textContent === 'delete_outline') {
+        const id = e.target.parentElement.getAttribute('data-id')
+        db.collection('contacts').doc(id).delete()
+    }
 })

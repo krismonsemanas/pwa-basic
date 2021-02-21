@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const renderContacts = (data, id) => {
-    const html = `<li class="collection-item avatar" data-id="${id}">
+    const html = `<li class="collection-item contact-item avatar" data-id="${id}">
     <i class="material-icons circle">folder</i>
     Nama: <span class="name">${data.name}</span>
     <p>
@@ -26,3 +26,8 @@ const renderContacts = (data, id) => {
 </li>`
     contacts.innerHTML += html
 } 
+
+const removeContact = (id) => {
+    const contact = document.querySelector(`.contact-item[data-id=${id}`)
+    contact.remove()
+}
